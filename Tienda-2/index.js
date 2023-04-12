@@ -1,18 +1,11 @@
-console.log('Happy hacking :)')
+console.log("Consumiendo API");
 
 const urlBase = "https://platzi-avo.vercel.app";
-const nodoPadre = document.querySelector("#containerPadre");
 
-const formatPrice = (price) => {
-    const newPrice = new window.Intl.NumberFormat("en-EN", {
-        style: "currency",
-        currency: "GTQ",
-    }).format(price);
-    return newPrice;
-};
+const nodoPadre = document.querySelector("#containerPadre")
 
 fetch(`${urlBase}/api/avo`)
-.then(respuesta => respuesta.json())
+.then(response => response.json())
 .then(responseJson => {
     responseJson.data.forEach(item => {
         //crear imagen
@@ -21,17 +14,15 @@ fetch(`${urlBase}/api/avo`)
         //crear titulo
         const titulo = document.createElement("h2");
         titulo.textContent = item.name;
-        titulo.className = "tamanio tipografia letra"
-        //crear el precio
+        //crear precio
         const precio = document.createElement("h3");
-        precio.textContent = formatPrice(item.price);
-        precio.className ="tipografia tamanio2";
+        precio.textContent = item.price;
 
         const container = document.createElement("div");
         container.append(imagen, titulo, precio);
-        container.className = "col-3 text-center"
         nodoPadre.appendChild(container);
-
-
     });
 })
+.catch( error => {
+    console.log(error);
+});
