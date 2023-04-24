@@ -1,12 +1,10 @@
 
- 
 function random() {
     const maximo = 123;
     const minimo = 1;
     const  resul = Math.floor(Math.random() * (maximo - minimo)) + minimo;
     return resul;
 };
-
 
 function crearImagen() {
     const contenedorAuxiliar = document.createElement("div");
